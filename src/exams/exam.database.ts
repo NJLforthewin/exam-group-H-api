@@ -111,4 +111,4 @@ export const remove = async (id: string): Promise<null | void> => {
     delete examsData[id];
 
     saveExams();
-};
+}
