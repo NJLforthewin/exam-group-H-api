@@ -1,16 +1,23 @@
-import { UnitExams, exams } from "./exam.interface";
+import { UnitExams, exams } from "./exam.interface"; // Make sure this is correct
 import * as bcrypt from "bcryptjs";
 import { v4 as random } from "uuid";
 import * as fs from "fs";
 
-// Initialize the exams array
+// Initialize the exams array, ensure it's typed correctly
 let examData: exams = loadExams();
 
 // Function to load exams from the JSON file
 function loadExams(): exams {
     try {
         const data = fs.readFileSync("./exams.json", "utf-8");
-        return JSON.parse(data);
+        const parsedData: exams = JSON.parse(data);
+        
+        // Ensure examsArray is correctly typed
+        if (!parsedData.examsArray) {
+            parsedData.examsArray = []; // Ensure we don't get undefined
+        }
+
+        return parsedData;
     } catch (error) {
         console.log(`Error: ${error}`);
         return { examsArray: [] }; // Return an empty array if the file doesn't exist or there's an error
