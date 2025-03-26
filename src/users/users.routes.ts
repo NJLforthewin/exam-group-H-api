@@ -19,7 +19,6 @@ export default userRouter;
     } catch (error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error })
     }
-})
 
 
 
